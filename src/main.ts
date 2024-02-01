@@ -615,7 +615,7 @@ let imageHoverAnimation = new hoverEffect({
   parent: trustedByImageWrapper,
   intensity: 0.3,
   image1: "images/nile.jpg",
-  image2: "images/nile-2.bmp",
+  image2: "images/nile-2.jpg",
   displacementImage: "images/noise-map.png",
 });
 
