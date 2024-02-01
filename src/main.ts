@@ -1,9 +1,5 @@
-import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import anime from "animejs/lib/anime.es.js";
 import Lenis from "@studio-freight/lenis";
 import * as _ from "lodash";
 import hoverEffect from "hover-effect";
@@ -37,118 +33,10 @@ gsap.ticker.lagSmoothing(0);
 // Resize Window
 function onWindowResize() {
   location.reload();
-
-  // // Update camera
-  // camera.aspect = canvas.clientWidth / canvas.clientHeight;
-  // camera.updateProjectionMatrix();
-
-  // // Update renderer
-  // renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-  // renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 }
 const debouncedResize = _.debounce(onWindowResize, 500);
 addEventListener("resize", debouncedResize);
 
-/**
- * THREE Canvas
- */
-
-// const canvas = document.querySelector(".webgl") as HTMLCanvasElement;
-// const scene = new THREE.Scene();
-
-// const loadingManager = new THREE.LoadingManager();
-// const gltfLoader = new GLTFLoader(loadingManager);
-// let model: THREE.Object3D<THREE.Object3DEventMap>;
-// gltfLoader.load("/models/egyptian_ship/scene.gltf", (gltf) => {
-//   // const modelItems = [...model.children];
-//   // modelItems.forEach((item) => scene.add(item));
-
-//   // Pharoanic Cat
-//   // model = gltf.scene.children[0].children[0];
-//   // model.rotation.set(0, 0, 0);
-//   // scene.add(model);
-
-//   // Cleopatras Cat
-//   // model = gltf.scene.children[0].children[0];
-//   // model.position.set(0, 0, 0);
-//   // model.rotation.set(-Math.PI / 2, 0, -Math.PI / 2);
-//   // model.scale.set(0.5, 0.5, 0.5);
-//   // scene.add(model);
-
-//   // Pyramid Model
-//   // model = gltf.scene.children[0].children[0];
-//   // model.position.set(0.5, 0, 0);
-//   // model.rotation.set(Math.PI / 4, 0, Math.PI / 16);
-//   // model.scale.set(0.02, 0.02, 0.02);
-//   // scene.add(model);
-
-//   // Sphinx
-//   // model = gltf.scene.children[0].children[0];
-//   // model.position.set(-0.75, 0, 0);
-//   // model.rotation.set(Math.PI, Math.PI / 64, 0);
-//   // model.scale.set(0.15, 0.15, 0.15);
-//   // scene.add(model);
-
-//   // King Menkaure Model
-//   // model = gltf.scene.children[0].children[0];
-//   // model.position.set(-3.5, 0, 0);
-//   // model.rotation.set(Math.PI, 0, 0);
-//   // model.scale.set(0.6, 0.6, 0.6);
-//   // scene.add(model);
-
-//   // Ship Model
-//   model =
-//     gltf.scene.children[0].children[0].children[0].children[0].children[0];
-//   model.position.set(0, 0, 0);
-//   model.rotation.set(-Math.PI / 2, 0, 0);
-//   model.scale.set(0, 0, 0);
-//   scene.add(model);
-// });
-
-// const camera = new THREE.PerspectiveCamera(
-//   75,
-//   canvas.clientWidth / canvas.clientHeight,
-//   0.1,
-//   1000
-// );
-// camera.position.set(0, 1, 5);
-// scene.add(camera);
-
-// // const controls = new OrbitControls(camera, canvas);
-// // controls.enableDamping = true;
-
-// const ambientLight = new THREE.AmbientLight(0xffffff, 1);
-// scene.add(ambientLight);
-
-// const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-// directionalLight.position.set(0.5, 0.5, 5);
-// scene.add(directionalLight);
-
-// const renderer = new THREE.WebGLRenderer({
-//   canvas,
-//   antialias: true,
-//   alpha: true,
-// });
-// renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-// renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-// renderer.render(scene, camera);
-
-// const clock = new THREE.Clock();
-
-// const tick = () => {
-// const elapsedTime = clock.getElapsedTime();
-
-// Update controls
-// controls.update();
-
-// Render
-// renderer.render(scene, camera);
-
-// Call tick again on the next frame
-// window.requestAnimationFrame(tick);
-// };
-
-// tick();
 /**
  * Navigation Bar /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  */
@@ -356,7 +244,7 @@ title.addEventListener("click", () => {
 mm.add(
   { isMobile: `(max-width:767px)`, isLaptop: `(min-width:768px)` },
   (context) => {
-    let { isMobile, isLaptop } = context.conditions as gsap.Conditions;
+    let { isMobile } = context.conditions as gsap.Conditions;
     const heroIntroTl = gsap.timeline({});
 
     onload = () => {
@@ -489,8 +377,7 @@ mm.add(
     isLaptop: `(min-width:812px)`,
   },
   (context) => {
-    let { isMobile, isTablet, isLaptop } =
-      context.conditions as gsap.Conditions;
+    let { isLaptop } = context.conditions as gsap.Conditions;
     const pageTwoTl = gsap.timeline({
       scrollTrigger: {
         trigger: ".page-two",
@@ -685,145 +572,10 @@ const sliderTl = gsap.timeline({
 
 sliderTl.to(slider, { xPercent: -75 });
 
-// sections.forEach((section, index) => {
-//   sliderTl.from(section.querySelector(".content > .quote"), {
-//     xPercent: 100,
-//     opacity: 0,
-//     scrollTrigger: {
-//       trigger: section,
-//       scrub: true,
-//       markers: true,
-//       start: "left center",
-//       end: "center center",
-//       containerAnimation: sliderTl,
-//     },
-//   });
-// .from(section.querySelector(".content > .details"), {
-//   xPercent: -100,
-//   opacity: 0,
-//   scrollTrigger: {
-//     trigger: section,
-//     scrub: true,
-//     markers: true,
-//     start: "left center",
-//     end: "center center",
-//     containerAnimation: sliderTl,
-//   },
-// });
-// .fromTo(
-//   section.querySelector("img"),
-//   {
-//     xPercent: 50,
-//     yPercent: -100,
-//   },
-//   {
-//     xPercent: -50,
-//     yPercent: -50,
-//     ease: "elastic.out(1,1)",
-//     scrollTrigger: {
-//       trigger: section.querySelector(".content"),
-//       start: "left center",
-//       end: "center center",
-//       containerAnimation: sliderTl,
-//       scrub: true,
-//     },
-//   }
-// );
-// });
-
-/**
- * Page Six /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- */
-// const voyageContentWrappers = gsap.utils.toArray(
-//   ".columns-wrapper > .column > .page-column > .content-wrapper"
-// ) as HTMLDivElement[];
-
-// const canvasWrapper = document.querySelector(
-//   ".canvas-wrapper"
-// ) as HTMLDivElement;
-// addEventListener("scroll", () => {
-//   if (model && canvasWrapper.getBoundingClientRect().y < 240) {
-//     const tl = gsap.timeline();
-//     tl.to(model.position, { x: 0, y: 0, z: 0, duration: 2 })
-//       .to(model.scale, { x: 0.3, y: 0.3, z: 0.3, duration: 2 }, "<")
-//       .to(model.rotation, { x: -Math.PI / 8, y: 0, z: 0, duration: 2 })
-//       .to(model.position, { x: 0, y: 3, z: 0, duration: 2 })
-//       .to(model.scale, { x: 0.2, y: 0.2, z: 0.2, duration: 2 }, "<");
-//     // model.position.set(0, -1, 0);
-//     // model.rotation.set(-Math.PI / 1.8, 0, 0);
-//   }
-// });
-
-// const voyageTl = gsap.timeline({
-//   scrollTrigger: {
-//     trigger: ".webgl",
-//     markers: true,
-//     start: "25% bottom",
-//   },
-// });
-
-// voyageTl.()
-
-// .from(".page-voyage > .story", {
-//   scaleY: 0,
-//   transformOrigin: "top",
-//   duration: 2,
-// })
-// .from(".page-voyage > .story > h3", {
-// yPercent: -50,
-// xPercent: 20,
-// scale: 0.8,
-// rotationX: -Math.PI / 2,
-// transformOrigin: "50% 50% 150%",
-// opacity: 0,
-// });
-
-// voyageContentWrappers.forEach((contentWrapper) => {
-//   const storyTl = gsap.timeline({
-//     scrollTrigger: {
-//       trigger: contentWrapper,
-//       markers: true,
-//     },
-//   });
-
-//   storyTl
-//     .to(contentWrapper.querySelector("img"), {
-//       opacity: 1,
-//     })
-//     .fromTo(
-//       contentWrapper.querySelector("h5"),
-//       {
-//         opacity: 0,
-//         xPercent: -100,
-//       },
-//       {
-//         opacity: 1,
-//         xPercent: 0,
-//       }
-//     )
-//     .fromTo(
-//       contentWrapper.querySelector("p"),
-//       {
-//         opacity: 0,
-//         yPercent: 200,
-//       },
-//       {
-//         opacity: 1,
-//         yPercent: 0,
-//       }
-//     )
-//     .to(
-//       contentWrapper.querySelector("img"),
-//       {
-//         opacity: 0,
-//       },
-//       "<"
-//     );
-// });
-
 /**
  * Button /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  */
+
 const btns = document.querySelectorAll(
   ".button"
 ) as NodeListOf<HTMLButtonElement>;
@@ -837,7 +589,7 @@ if (btns.length) {
       let rotateY = (e.clientX - rect.x - rect.width / 2) / 10;
       btn.style.transform = `perspective(100px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
-    btn.addEventListener("mouseleave", (e: MouseEvent) => {
+    btn.addEventListener("mouseleave", () => {
       btn.style.transform = `perspective(100px) rotateX(0deg) rotateY(0deg)`;
     });
 

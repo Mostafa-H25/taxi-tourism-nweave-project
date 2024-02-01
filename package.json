@@ -17,11 +17,7 @@
     "vite": "^5.0.8"
   },
   "dependencies": {
-    "@splidejs/splide": "^4.1.4",
-    "@splidejs/splide-extension-auto-scroll": "^0.5.3",
-    "@splidejs/splide-extension-intersection": "^0.2.0",
     "@studio-freight/lenis": "^1.0.34",
-    "animejs": "^3.2.2",
     "gsap": "^3.12.4",
     "hover-effect": "^1.2.1",
     "lodash": "^4.17.21",
